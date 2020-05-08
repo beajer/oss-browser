@@ -9,7 +9,9 @@
     "postbuild": "node gen",
     "prod": "./node_modules/.bin/cross-env NODE_ENV=production cd dist && electron .",
     "watch": "./node_modules/.bin/gulp watch --custom=$custom",
-    "build": "./node_modules/.bin/gulp build --custom=$custom"
+    "build": "./node_modules/.bin/gulp build --custom=$custom",
+    "prettier": "prettier --write .",
+    "eslint": "eslint --fix . -o eslint.html --no-color "
   },
   "engines": {
     "node": "8.2.1"
