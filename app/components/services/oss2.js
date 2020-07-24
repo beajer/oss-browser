@@ -1191,7 +1191,6 @@ angular.module("web").factory("ossSvs2", [
           Expires: "expires",
         };
         request.on("response", (response) => {
-          console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
           const result = {};
           for (let key in Schema) {
             if (response.headers[Schema[key]]) {
@@ -1346,6 +1345,7 @@ angular.module("web").factory("ossSvs2", [
       const stream = require("stream");
       client.urllib.request = (url, params) => {
         return new Promise((resolve, reject) => {
+          const startTime = Date.now();
           const request = net.request({
             url,
             method: params.method,
@@ -1370,6 +1370,12 @@ angular.module("web").factory("ossSvs2", [
                 status: response.statusCode,
                 headers: response.headers,
                 data,
+                res: {
+                  status: response.statusCode,
+                  headers: response.headers,
+                  size: data.length,
+                  rt: Date.now() - startTime,
+                },
               });
             });
             str.on("error", (e) => {
