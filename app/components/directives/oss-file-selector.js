@@ -32,7 +32,7 @@ angular.module("web").directive("ossFileSelector", [
         folderOnly: "=", // true
         height: "=", // 200
       },
-      templateUrl: "components/directives/oss-file-selector.html",
+      templateUrl: "/components/directives/oss-file-selector.html",
       controller: ["$scope", ctrl],
     };
 

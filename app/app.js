@@ -18,12 +18,12 @@ angular
       $stateProvider
         .state("files", {
           url: "/",
-          templateUrl: "main/files/files.html",
+          templateUrl: "/main/files/files.html",
           controller: "filesCtrl",
         })
         .state("login", {
           url: "/login",
-          templateUrl: "main/auth/login.html",
+          templateUrl: "/main/auth/login.html",
           controller: "loginCtrl",
         });
 

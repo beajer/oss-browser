@@ -65,7 +65,7 @@ angular.module("web").controller("usersCtrl", [
 
     function showUpdate(item) {
       $modal.open({
-        templateUrl: "main/modals/user-update.html",
+        templateUrl: "/main/modals/user-update.html",
         controller: "userUpdateCtrl",
         resolve: {
           item: function () {
@@ -81,7 +81,7 @@ angular.module("web").controller("usersCtrl", [
     }
     function showAK(item) {
       $modal.open({
-        templateUrl: "main/modals/user-ak.html",
+        templateUrl: "/main/modals/user-ak.html",
         controller: "userAKCtrl",
         size: "lg",
         resolve: {

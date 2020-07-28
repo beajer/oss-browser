@@ -144,7 +144,7 @@ angular.module("web").controller("renameModalCtrl", [
     function showMoveFolder(newPath) {
       var successMsg = T("rename.success"); //重命名成功
       $modal.open({
-        templateUrl: "main/files/modals/move-modal.html",
+        templateUrl: "/main/files/modals/move-modal.html",
         controller: "moveModalCtrl",
         backdrop: "static",
         resolve: {

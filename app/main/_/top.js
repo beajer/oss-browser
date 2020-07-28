@@ -80,7 +80,7 @@ angular.module("web").controller("topCtrl", [
 
     $rootScope.showSettings = function (fn) {
       $modal.open({
-        templateUrl: "main/modals/settings.html",
+        templateUrl: "/main/modals/settings.html",
         controller: "settingsCtrl",
         resolve: {
           callback: function () {
@@ -133,7 +133,7 @@ angular.module("web").controller("topCtrl", [
 
     function showFavList() {
       $modal.open({
-        templateUrl: "main/modals/fav-list.html",
+        templateUrl: "/main/modals/fav-list.html",
         controller: "favListCtrl",
         size: "lg",
       });
@@ -141,7 +141,7 @@ angular.module("web").controller("topCtrl", [
 
     function showAbout() {
       $modal.open({
-        templateUrl: "main/modals/about.html",
+        templateUrl: "/main/modals/about.html",
         controller: "aboutCtrl",
         size: "md",
         resolve: {

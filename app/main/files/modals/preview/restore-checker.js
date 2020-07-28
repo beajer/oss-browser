@@ -2,7 +2,7 @@ angular.module("web").directive("restoreChecker", [
   function () {
     return {
       restrict: "EA",
-      templateUrl: "main/files/modals/preview/restore-checker.html",
+      templateUrl: "/main/files/modals/preview/restore-checker.html",
       transclude: true,
       scope: {
         bucketInfo: "=",
@@ -78,7 +78,7 @@ angular.module("web").directive("restoreChecker", [
 
       function showRestore() {
         $modal.open({
-          templateUrl: "main/files/modals/restore-modal.html",
+          templateUrl: "/main/files/modals/restore-modal.html",
           controller: "restoreModalCtrl",
           resolve: {
             item: function () {

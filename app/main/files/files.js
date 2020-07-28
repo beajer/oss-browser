@@ -738,7 +738,7 @@ angular
 
       function showDeleteFiles(items) {
         $modal.open({
-          templateUrl: "main/files/modals/delete-files-modal.html",
+          templateUrl: "/main/files/modals/delete-files-modal.html",
           controller: "deleteFilesModalCtrl",
           backdrop: "static",
           resolve: {
@@ -761,7 +761,7 @@ angular
 
       function showAddBucket() {
         $modal.open({
-          templateUrl: "main/files/modals/add-bucket-modal.html",
+          templateUrl: "/main/files/modals/add-bucket-modal.html",
           controller: "addBucketModalCtrl",
           resolve: {
             item: function () {
@@ -782,7 +782,7 @@ angular
 
       function showAddFolder() {
         $modal.open({
-          templateUrl: "main/files/modals/add-folder-modal.html",
+          templateUrl: "/main/files/modals/add-folder-modal.html",
           controller: "addFolderModalCtrl",
           resolve: {
             currentInfo: function () {
@@ -802,7 +802,7 @@ angular
 
       function showUpdateBucket(item) {
         $modal.open({
-          templateUrl: "main/files/modals/update-bucket-modal.html",
+          templateUrl: "/main/files/modals/update-bucket-modal.html",
           controller: "updateBucketModalCtrl",
           resolve: {
             item: function () {
@@ -822,7 +822,7 @@ angular
 
       function showBucketMultipart(item) {
         $modal.open({
-          templateUrl: "main/files/modals/bucket-multipart-modal.html",
+          templateUrl: "/main/files/modals/bucket-multipart-modal.html",
           controller: "bucketMultipartModalCtrl",
           size: "lg",
           backdrop: "static",
@@ -841,26 +841,26 @@ angular
 
         //type: [picture|code|others|doc]
 
-        var templateUrl = "main/files/modals/preview/others-modal.html";
+        var templateUrl = "/main/files/modals/preview/others-modal.html";
         var controller = "othersModalCtrl";
         var backdrop = true;
 
         if (fileType.type == "code") {
-          templateUrl = "main/files/modals/preview/code-modal.html";
+          templateUrl = "/main/files/modals/preview/code-modal.html";
           controller = "codeModalCtrl";
           backdrop = "static";
         } else if (fileType.type == "picture") {
-          templateUrl = "main/files/modals/preview/picture-modal.html";
+          templateUrl = "/main/files/modals/preview/picture-modal.html";
           controller = "pictureModalCtrl";
           //backdrop = 'static';
         } else if (fileType.type == "video") {
-          templateUrl = "main/files/modals/preview/media-modal.html";
+          templateUrl = "/main/files/modals/preview/media-modal.html";
           controller = "mediaModalCtrl";
         } else if (fileType.type == "audio") {
-          templateUrl = "main/files/modals/preview/media-modal.html";
+          templateUrl = "/main/files/modals/preview/media-modal.html";
           controller = "mediaModalCtrl";
         } else if (fileType.type == "doc") {
-          templateUrl = "main/files/modals/preview/doc-modal.html";
+          templateUrl = "/main/files/modals/preview/doc-modal.html";
           controller = "docModalCtrl";
         }
 
@@ -929,7 +929,7 @@ angular
 
       function showCRC(item) {
         $modal.open({
-          templateUrl: "main/files/modals/crc-modal.html",
+          templateUrl: "/main/files/modals/crc-modal.html",
           controller: "crcModalCtrl",
           resolve: {
             item: function () {
@@ -1084,7 +1084,7 @@ angular
       //授权
       function showGrant(items) {
         $modal.open({
-          templateUrl: "main/files/modals/grant-modal.html",
+          templateUrl: "/main/files/modals/grant-modal.html",
           controller: "grantModalCtrl",
           resolve: {
             items: function () {
@@ -1100,7 +1100,7 @@ angular
       //生成授权码
       function showGrantToken(item) {
         $modal.open({
-          templateUrl: "main/files/modals/grant-token-modal.html",
+          templateUrl: "/main/files/modals/grant-token-modal.html",
           controller: "grantTokenModalCtrl",
           resolve: {
             item: function () {
@@ -1116,7 +1116,7 @@ angular
       //重命名
       function showRename(item) {
         $modal.open({
-          templateUrl: "main/files/modals/rename-modal.html",
+          templateUrl: "/main/files/modals/rename-modal.html",
           controller: "renameModalCtrl",
           backdrop: "static",
           resolve: {
@@ -1167,7 +1167,7 @@ angular
         ) {
           //1个支持重命名
           $modal.open({
-            templateUrl: "main/files/modals/rename-modal.html",
+            templateUrl: "/main/files/modals/rename-modal.html",
             controller: "renameModalCtrl",
             backdrop: "static",
             resolve: {
@@ -1213,7 +1213,7 @@ angular
           Dialog.confirm(keyword, msg, function (b) {
             if (b) {
               $modal.open({
-                templateUrl: "main/files/modals/move-modal.html",
+                templateUrl: "/main/files/modals/move-modal.html",
                 controller: "moveModalCtrl",
                 backdrop: "static",
                 resolve: {
@@ -1259,7 +1259,7 @@ angular
       //地址
       function showAddress(item) {
         $modal.open({
-          templateUrl: "main/files/modals/get-address.html",
+          templateUrl: "/main/files/modals/get-address.html",
           controller: "getAddressModalCtrl",
           resolve: {
             item: function () {
@@ -1275,7 +1275,7 @@ angular
       //acl
       function showACL(item) {
         $modal.open({
-          templateUrl: "main/files/modals/update-acl-modal.html",
+          templateUrl: "/main/files/modals/update-acl-modal.html",
           controller: "updateACLModalCtrl",
           resolve: {
             item: function () {
@@ -1290,7 +1290,7 @@ angular
 
       function showHttpHeaders(item) {
         $modal.open({
-          templateUrl: "main/files/modals/update-http-headers-modal.html",
+          templateUrl: "/main/files/modals/update-http-headers-modal.html",
           controller: "updateHttpHeadersModalCtrl",
           resolve: {
             item: function () {
@@ -1325,7 +1325,7 @@ angular
 
       function showSelrestores(items) {
         $modal.open({
-          templateUrl: "main/files/modals/batch-restore-modal.html",
+          templateUrl: "/main/files/modals/batch-restore-modal.html",
           controller: "batchRestoreModalCtrl",
           resolve: {
             item: function () {
@@ -1351,7 +1351,7 @@ angular
 
       function showRestore(item) {
         $modal.open({
-          templateUrl: "main/files/modals/restore-modal.html",
+          templateUrl: "/main/files/modals/restore-modal.html",
           controller: "restoreModalCtrl",
           resolve: {
             item: function () {
@@ -1378,7 +1378,7 @@ angular
 
       function showUserList() {
         $modal.open({
-          templateUrl: "main/modals/users.html",
+          templateUrl: "/main/modals/users.html",
           controller: "usersCtrl",
           size: "lg",
           backdrop: "static",

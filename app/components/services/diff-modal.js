@@ -17,7 +17,7 @@ angular
           editable = editable === false ? false : true;
 
           $modal.open({
-            templateUrl: "components/services/diff-modal.html",
+            templateUrl: "/components/services/diff-modal.html",
             controller: "diffModalCtrl",
             size: "lg",
             resolve: {

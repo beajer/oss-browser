@@ -77,7 +77,7 @@ angular
         };
 
         $modal.open({
-          templateUrl: "components/services/dialog.html",
+          templateUrl: "/components/services/dialog.html",
           controller: "alertDialogCtrl",
           size: opt.size || "md",
           resolve: {
@@ -113,7 +113,7 @@ angular
         };
 
         $modal.open({
-          templateUrl: "components/services/dialog.html",
+          templateUrl: "/components/services/dialog.html",
           controller: "confirmDialogCtrl",
           size: opt.size || "md",
           resolve: {
