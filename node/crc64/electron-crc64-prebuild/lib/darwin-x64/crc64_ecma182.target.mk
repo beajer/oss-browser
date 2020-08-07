@@ -51,14 +51,14 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/include/node \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/src \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/openssl/config \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/openssl/openssl/include \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/uv/include \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/zlib \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/v8/include \
-	-I$(srcdir)/node_modules/nan
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/include/node \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/src \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/openssl/config \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/openssl/openssl/include \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/uv/include \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/zlib \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/v8/include \
+	-I$(srcdir)/../../../node_modules/nan
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=crc64_ecma182' \
@@ -106,14 +106,14 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/include/node \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/src \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/openssl/config \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/openssl/openssl/include \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/uv/include \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/zlib \
-	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.0.3/deps/v8/include \
-	-I$(srcdir)/node_modules/nan
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/include/node \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/src \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/openssl/config \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/openssl/openssl/include \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/uv/include \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/zlib \
+	-I/Users/biejia/.electron-gyp/Library/Caches/node-gyp/9.1.2/deps/v8/include \
+	-I$(srcdir)/../../../node_modules/nan
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/node_crc64_ecma_182.o
