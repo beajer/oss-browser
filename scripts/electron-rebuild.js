@@ -2,6 +2,7 @@ const { rebuild } = require("electron-rebuild");
 const path = require("path");
 const fs = require("fs");
 const shell = require("shelljs");
+const { execSync } = require("child_process");
 const ELECTRON_VERSION = require("electron/package.json").version;
 
 const base_crc64_addon_dir = path.join(
@@ -50,6 +51,12 @@ rebuild({
       "`);\n"
   );
   console.log(
-    `done: electron-version: ${ELECTRON_VERSION}, rebuild ${nodeFile}`
+    `Done: electron-version: ${ELECTRON_VERSION}, rebuild ${nodeFile}`
   );
+
+  console.log(`Start testing ${nodeFile}`);
+  execSync("npx electron test/crc64/", {
+    stdio: "inherit",
+  });
+  console.log(`Test ${nodeFile} is successful`);
 });

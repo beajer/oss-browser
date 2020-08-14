@@ -4,6 +4,7 @@
 const shell = require("shelljs");
 const path = require("path");
 const fs = require("fs");
+const { execSync } = require("child_process");
 const ELECTRON_VERSION = require("electron/package.json").version;
 const ELECTRON_ERROR = "https://npm.taobao.org/mirrors/electron";
 const base_crc64_addon_dir = path.join(
@@ -49,4 +50,10 @@ fs.writeFileSync(
     "`);\n"
 );
 
-console.log(`done: electron-version: ${ELECTRON_VERSION}, rebuild ${nodeFile}`);
+console.log(`Done: electron-version: ${ELECTRON_VERSION}, rebuild ${nodeFile}`);
+
+console.log(`Start testing ${nodeFile}`);
+execSync("npx electron test/crc64/", {
+  stdio: "inherit",
+});
+console.log(`Test ${nodeFile} is successful`);

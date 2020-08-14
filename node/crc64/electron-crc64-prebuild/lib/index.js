@@ -1,1 +1,1 @@
-module.exports = require(`./${process.platform}-${process.arch}/Release/crc64_ecma182`);
+module.exports = require(`./${process.platform}-${process.arch}/crc64_ecma182.node`);
