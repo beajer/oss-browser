@@ -5,11 +5,6 @@ node_js: '14'
 os:
   - linux
   - osx
+  - windows
 
 script: node node/crc64/electron-crc64-prebuild/scripts/build.js
-
-after_script:
-  - git remote -v
-  - git add .
-  - git commit -m "ci: rebuild native node on $TRAVIS_OS_NAME" --no-verify
-  - git push 
