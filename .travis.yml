@@ -1,0 +1,11 @@
+os:
+  - windows
+  - linux
+  - osx
+
+script: make i && npm run build
+
+after_script:
+  - git add .
+  - git commit -m "ci:rebuild native node" --no-verify
+  - git push
