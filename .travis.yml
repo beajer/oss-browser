@@ -11,4 +11,4 @@ before_script: npm i
   
 script: 
   - node node/crc64/electron-crc64-prebuild/scripts/build.js
-  - electron node/crc64/electron-crc64-prebuild/test/
+  - npx electron node/crc64/electron-crc64-prebuild/test/
