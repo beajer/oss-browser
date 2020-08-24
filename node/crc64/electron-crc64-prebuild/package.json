@@ -9,10 +9,7 @@
     "rebuild": "node scripts/rebuild.js",
     "postinstall": "npm run build && npm run test"
   },
-  "devDependencies": {
-    "nan": "^2.14.1",
-    "electron-rebuild": "^1.11.0"
-  },
+  "devDependencies": {},
   "author": "",
   "license": "MIT",
   "gypfile": true
