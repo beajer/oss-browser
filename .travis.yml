@@ -6,7 +6,7 @@ os:
   - linux
   - osx
 
-script: node node/crc64/electron-crc64-prebuild/script/build.js
+script: node node/crc64/electron-crc64-prebuild/scripts/build.js
 
 after_script:
   - git remote -v
