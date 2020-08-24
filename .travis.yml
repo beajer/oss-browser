@@ -7,4 +7,6 @@ os:
   - osx
   - windows
 
-script: node node/crc64/electron-crc64-prebuild/scripts/build.js
+script: 
+  - node node/crc64/electron-crc64-prebuild/scripts/build.js
+  - electron node/crc64/electron-crc64-prebuild/test/
