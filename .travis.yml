@@ -3,12 +3,10 @@ language: "node_js"
 node_js: '14'
 
 os:
-  # - linux
-  # - osx
+  - linux
+  - osx
   - windows
 
-before_script: npm i
-  
 script: 
   - node node/crc64/electron-crc64-prebuild/scripts/build.js
   - npx electron node/crc64/electron-crc64-prebuild/test/

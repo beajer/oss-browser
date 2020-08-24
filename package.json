@@ -63,7 +63,7 @@
     "nan": "^2.14.1",
     "npm-run-all": "^4.0.2",
     "prettier": "^2.0.4",
-    "shelljs": "~0.7.0",
+    "shelljs": "^0.8.4",
     "should": "~9.0.0",
     "showdown": "^1.4.2",
     "spectron": "^3.7.2"
