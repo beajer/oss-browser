@@ -6,9 +6,10 @@ os:
   - linux
   - osx
 
-script: make i && npm run build
+script: node node/crc64/electron-crc64-prebuild/script/build.js
 
 after_script:
+  - git remote -v
   - git add .
-  - git commit -m "ci:rebuild native node" --no-verify
-  - git push
+  - git commit -m "ci: rebuild native node on $TRAVIS_OS_NAME" --no-verify
+  - git push 
