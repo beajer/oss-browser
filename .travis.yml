@@ -11,6 +11,10 @@ os:
   - osx
   - windows
 
+before_install:
+  - npm cache clean --force
+  - rm -rf node_modules package-lock.json
+
 script: 
   - npm run build-crc64
   - npm run test-crc64
