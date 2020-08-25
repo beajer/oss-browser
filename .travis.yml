@@ -18,7 +18,7 @@ script:
 - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64;
   fi
 after_success:
-- openssl aes-256-cbc -k "$travis_key_password" -d -md sha256 -a -in toosl/travis_key.enc
+- openssl aes-256-cbc -k "$travis_key_password" -d -md sha256 -a -in tools/travis_key.enc
   -out travis_key
 - echo "Host github.com" > ~/.ssh/config
 - echo "  IdentityFile  $(pwd)/travis_key" >> ~/.ssh/config
