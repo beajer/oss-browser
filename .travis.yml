@@ -7,13 +7,10 @@ branches:
   - test/ci
 
 os:
-  # - linux
-  # - osx
+  - linux
+  - osx
   - windows
 
-before_script:
-  - npm link electron
-
 script: 
-  - node node/crc64/electron-crc64-prebuild/scripts/build.js
-  - electron node/crc64/electron-crc64-prebuild/test/
+  - npm run build-crc64
+  - npm run test-crc64
