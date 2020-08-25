@@ -24,6 +24,8 @@ script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 
 after_success:
+  - git config --global user.name "fool bot"
+  - git config --global user.email "919060679@qq.com"
   - git add .
   - git commit -m "[skip travis] ci:build crc64 for $TRACIS_OS_NAME on travis"
   - git push "https://${GH_TOKEN}@${GH}" test/ci:test/ci
