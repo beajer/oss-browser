@@ -9,7 +9,7 @@ branches:
 env:
   global:
     - GH: github.com/beajer/oss-browser.git
-    - secure: auSGZAZH6KM+KJjBF2Ua0BGvacdPaSELOHXJyzyy203isTJR2YXW99sqfjyWF0XDTmoUu+K8fIupp+VE0ATyWLYHO5Z++dVF5qQSymz/hfZ3rK1oZPoMupIECG73F2cIb3HIsCl2Xsma/N9dXvAh/RzeCyWIr2ac7I3842gP7Lj4V9txbmxtvPIMyo6C3S5cMywJK1QTkzQX5nMrNvHddQrm1vQdDSknNIUvDWptNd2kLe7fnRZf+SZsKxG1q+krwA7rHFbWs0pOkK84lx0h8sNISg7i3PTX8xrG7+tUojq6+eBgQQzCHQQYW9L702nYxVBw3zfhWZ20G9puQyr6H/GtjkJzLWAJ/SeY3XBEH1YBTqWqPoqvj3N6FW7EGU8uf9kgkbuzvppTvRGxVyyCcr3Cn9cshLjgXRbgfFAAKMe+bdN4VCw4et1vCTaBhpUKJSZFiSIC2j17N98yCQSFWOmNolwxeS6uXdLRT+JN/mcKV0+Waz9AOP6OSlH4u4HPS3/kq1W6TyhNi17SkGjeQe6UgJBBLVy/0+LqmLiPTMfxFj/f/VSV/UhDynk+K1SeZugQt6KkWNRLarXThZ6o1PeOBChOU63PRaZfXdmIwq2jVM1OEv/CsaFBSkcNJndZfILaFEjlbJMxxe+kXAyGR1doBR9uly16WDE3vld1oLY=
+    - secure: a4yFoHZTt6R4Eh244xuC4bLFKwH7I7um8IRizxX4AxsvpoVtw5Yea9Wg2UBu/SnF8IWAF9TKPLmzJ1uY3mhguzLtU8m2NSEZHyC7SzGAoRHXFzi+SxoHufEDAzaSQVos90y/sSuJbcCVKRnb1ReT7amb5FPPied2BObu1Gxp+IrxsCdu0crxnBn+CBW2880sPw19FBWyJ1i5PbSSLKapuvfwV7XR5+a9bYWs+r5WYuEcgNl+yEDFOiZqKeDOa62fxw+nzSCYB7C7/OIW1kVavnvFAJRsMW8UyqGkQVwejdBxeRdM0CUPe0/LxxkuJFxGnGyX0wWEsyZXEVqxj1spmfEIhHygz/5gmzFguK+P0MM25rzbgsvDy2bYE/FxqWcjJ0lJJ9FIfC4afSHh863LiC+ylz3/IVaEb5odFd+R0NpZ1Ig8ffQ2/fLYx8Vpc+QbTgLs06hv59FgTlbEZ6U5RHjG2pYr3RBoccTCAqa90tF7/3260KQbTtm+mHNkDY6r3qEsKMgqDspyhpdTm03LajFN0zcV1szNTdE5+s4gssjg8WvgaTg6Sz4GfGfdGJnDzKqV/6lFFNDo5LZBWDdaU9PG2vAUkOwomBdDxEzY4+AlzuRYr87D6RONH+T+88swK7fh/ezKAEEs4IqY4vibpN7ZCO0doVz58O5HmdPkaR0=
 
 os:
   - linux
@@ -24,4 +24,6 @@ script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 
 after_success:
- - git push -f "https://${ACTOKEN}@${GH}" test/ci:test/ci
+  - git add .
+  - git commit -m "[skip travis] ci:build crc64 for $TRACIS_OS_NAME on travis"
+  - git push "https://${GH_TOKEN}@${GH}" test/ci:test/ci
