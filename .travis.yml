@@ -2,11 +2,18 @@ language: "node_js"
 
 node_js: '12'
 
+branches:
+  only:
+  - test/ci
+
 os:
   # - linux
   # - osx
   - windows
 
+before_script:
+  - npm link electron
+
 script: 
   - node node/crc64/electron-crc64-prebuild/scripts/build.js
-  - npx electron node/crc64/electron-crc64-prebuild/test/
+  - electron node/crc64/electron-crc64-prebuild/test/
