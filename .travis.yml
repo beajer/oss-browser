@@ -8,7 +8,7 @@ branches:
 
 env:
   global:
-    - GH: github.com/beajer/oss-browser.git
+    - GH: https://github.com/beajer/oss-browser.git
     - secure: "ED2YwdosykhpTEIWtp2ihYLaBmKXGB5IY35x8myTGX6OkBplZrCZbEUhE2wkH1J7GXLZZm8nLb6DEvqmffuFF9FZjcZOmmyb6cAwtq11DyeEwJIKFW8ucfk66RH5KC090PLH4MZsoBTYKlkeHLhukFjcM3GC+xleWDI+RoncELcgF/GewEQ1avU+NeSTP85M0o1Tvz9ITF9DndHMqf3SOTGjeJ2abEBpDz98tdHHpQtfbzIg3nPyttjbXaOma3EvcyLickA3ktnoBUeed6+e/8lZp+SYwVhHuRuMi4o5hQ0I8fnGWQ0Jw+qFUAGD7MZokYpizt15pJbbaC1TkOTN8nwFtAM72Eli/q54DVSQ8t4vZEusvYjew51iE5xXf1SV/een3lFSeioeZGxR4lDn5opDj9GMvtYnLrlmQZWNZeaXEEuQS0c+eVCoX26hGwT/0uIksuyBj7xHwv2vtwRiVoFhr47KLAp1mZ8tOC/Bel6pDTvjPXC0ypIBOZnUj65CJyBo57b0HfOn2WdAbor2wj7ihiWPnQ15rAoisCN6/qft34OYG7AwjDR37c0imqwy2wKbgg2lthz9vsu2gmi8zc3lVPPpQVe5tEvQfUT1Zk6SDozksf3QWxrmo3ei2reJK4DOZChWOk+Tu4kJ6qwob1KtivKohvsPLezDer3VEJI="
 os:
   - linux
