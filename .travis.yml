@@ -6,6 +6,10 @@ branches:
   only:
   - test/ci
 
+env:
+  - GH: github.com/beajer/oss-browser.git
+  - secure: auSGZAZH6KM+KJjBF2Ua0BGvacdPaSELOHXJyzyy203isTJR2YXW99sqfjyWF0XDTmoUu+K8fIupp+VE0ATyWLYHO5Z++dVF5qQSymz/hfZ3rK1oZPoMupIECG73F2cIb3HIsCl2Xsma/N9dXvAh/RzeCyWIr2ac7I3842gP7Lj4V9txbmxtvPIMyo6C3S5cMywJK1QTkzQX5nMrNvHddQrm1vQdDSknNIUvDWptNd2kLe7fnRZf+SZsKxG1q+krwA7rHFbWs0pOkK84lx0h8sNISg7i3PTX8xrG7+tUojq6+eBgQQzCHQQYW9L702nYxVBw3zfhWZ20G9puQyr6H/GtjkJzLWAJ/SeY3XBEH1YBTqWqPoqvj3N6FW7EGU8uf9kgkbuzvppTvRGxVyyCcr3Cn9cshLjgXRbgfFAAKMe+bdN4VCw4et1vCTaBhpUKJSZFiSIC2j17N98yCQSFWOmNolwxeS6uXdLRT+JN/mcKV0+Waz9AOP6OSlH4u4HPS3/kq1W6TyhNi17SkGjeQe6UgJBBLVy/0+LqmLiPTMfxFj/f/VSV/UhDynk+K1SeZugQt6KkWNRLarXThZ6o1PeOBChOU63PRaZfXdmIwq2jVM1OEv/CsaFBSkcNJndZfILaFEjlbJMxxe+kXAyGR1doBR9uly16WDE3vld1oLY=
+
 os:
   - linux
   - osx
@@ -16,14 +20,7 @@ before_install:
   - rm -rf node_modules package-lock.json
 
 script: 
-  - npm run build-crc64
-  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
+  - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 
-deploy:
-  provider: releases
-  api_key: $GITHUB_TOKEN
-  file_glob: true
-  file: node/**/*
-  skip_cleanup: true
-  on:
-    tags: true
+after_success:
+ - git push -f "https://${ACTOKEN}@${GH}" test/ci:test/ci
