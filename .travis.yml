@@ -12,16 +12,18 @@ os:
   - windows
 
 before_install:
-  - npm cache clean
+  - npm cache clean --force
   - rm -rf node_modules package-lock.json
 
 script: 
   - npm run build-crc64
   - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 
-after_success:
-  - eval "$(ssh-agent -s)" #start the ssh agent
-  - chmod 600 .travis/deploy_key.pem # this key should have push access
-  - ssh-add .travis/deploy_key.pem
-  - git remote add deploy https://github.com/beajer/oss-browser.git
-  - git push deploy
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file: node/**/*
+  skip_cleanup: true
+  on:
+    tags: true
