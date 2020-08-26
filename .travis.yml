@@ -3,24 +3,20 @@ node_js: "12"
 branches:
   only:
     - test/ci
-env:
-  global:
-    - GH: https://github.com/beajer/oss-browser.git
-    - secure: "FOxijoLPmsJS3rsFAr1ROZ1cxIXOFnUkeKSxc0fI8qI9QVhdhGY0QlzYMCnO9yBt0wGBPMdDhg+KYU8uJCUiKAMrCHmJwFqPpGYFEBFf2L6kkNWpMTVCEkYJP6STKqEsvEk2a8YR4oelc0wCVXkVNr0BTprrocuphFgZOB/f4GBL3ENOD88iYX1C3hd54v1uiSJsFdqQIWcImbzWuAm84e2XDGiMqRbqKv4z62hL7dvfno3Zsv+B0lQN0DuwFe7MD2q30orDsn8Zw1QPIumhPOgAmKCaYAv8X5rLDQo5NrW8WJsKT85h+vnhNCC+45TrMi7WbAe/KJHa+dcIT9Ze6G5A4+2y/+mwNdDTI2rIUqRIFy0Ri0kHcO18HeMIwHUGfpW9cEdbhDmKp20cbpDy4gWca23u6IyBg5Uj/BQQ4km/vHfWJ9+2wIKIDggVXcjGs0QtMWcbi3HQXnkBnPnIIKqCOmR773ANRreO5tp0hYJbWO+zq6t9hcyZvgsIlZt3xjdrqge2iXuv5yei+1CK86nj3Xd71yixSpi+YzEno9zNf0m7RzDk7ELuP9Dv/5xbvl7Xv11FqSPWg20F8NRuIcOIZeZfQa4rl/u1IQRo7Wg10BoVzuF+TV0YDYJUlbMwFnaipApfqDX+Te/s1CdYk9ov4mqLB9dlTCzwbIsFW+g="
 os:
   - linux
   - osx
   - windows
 before_install:
+  - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
+  - chmod 600 deploy_key
+  - ssh-agent -s
+  - ssh-add deploy_key
   - npm cache clean --force
   - rm -rf node_modules package-lock.json
 script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  target_branch: develop
-  on:
-    branch: test/ci
+after_success:
+  - git add node/
+  - git commit -m 'chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME'
+  - git push
