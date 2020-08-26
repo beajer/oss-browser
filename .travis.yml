@@ -1,32 +1,28 @@
 language: node_js
-node_js: '12'
+node_js: "12"
 branches:
   only:
-  - test/ci
+    - test/ci
 env:
   global:
-  - GH: https://github.com/beajer/oss-browser.git
-  - secure: GiiILkUEHpiWFpnoZhTqZMhZoaFHePvxbitUQ+vv7ihDH1qf7+oJ1fOvJLkQ5Vva4nXIBXAutmkWX9J3pblcFH50JQz6J7JwOhkETlFTd3z64nVMZ3ZdFlDQzkuyFcfRrhP6+9lcDDwBPWMpemFGOgo8Me0OOueuZifd8tMvlK2WHZsLzSNw9HpDxk6CWl6kwtY9naO0l2PiB/K8Vpyr24sT/TH+TQnOG78gOYi5m16gRi5VS8JGvxBCa0XJmIVGrN2zJTQCA3B4Lm4UNiMPmw1BbRv6vM35nZC5OQRcAyyqt9kZl94gllLAJr0roFFTnhNwoWZ0YNONmooDnPv1fVpGyY7r3OTn8cK9FVnXrkdsPlRaqL/16ulbdl7bcySC9+zj1UnHpwX8JopYPG171uWsnLNrgF4pXWo0z6uJ6JWlqEE1lvPqERcLL/2m6jW9y4SjD7KOxoUbOE6/H839JuuYppOn01WBCkxkIH+pLdiwJih7Hw6EM7jgVymlaSMW0qi/dwBOo98lGe51EV4e3Lx8Bq46+h4Qs4Hi4cY4eQGz5eP8s5bT4NGWkbFnF0VPorJESfHvHg4cFX8M5VBMI8HfU8vrunGGTGCbVUPeuhzLdk8H0L9jSShuUwHzMZRx9Yq23prl5B0oZZ6th7yfANZh1kzcd8PbihkmJ6W8cQE=
+    - GH: https://github.com/beajer/oss-browser.git
+    - secure: "c0Tnsi67xqYVS2ENRwg7BpDrgdLjLBvxrWB5P+EOElWjAtzbAHi9r70Fp0cg0Sjok0iTaVlSKzNw9IdABxvOsp3PXN4MMTqPb+NwgV/2i/O4QIpsRrlMAYlFIjNpY9l0Ju8O8nzR77CUOAZvJJLyWI2zEZWElq/yh6vGHDqlgoJ0nbhBS3aBPe8HlCCcJbFrodulpkqDFlh2hIZ58YzJ9mpy2DJnFlDLUIMCPNHskKt5Lb5u3I0PkcupZaDs6MMXe9esNKR9fTLbmwOfVojloZHmuWwviu29KJ7UdoZdxx5LtK47pDAR4/WngClLtKk4FHcbDMqoGdkf5kw6JqFr1LcQhxaFbq3ScVCXFeeSNR/e3H/acN9mTy+ZhQVpZQrx+kG9wyqLoLbgDHmBNyV3yOOnGy5oM5dsAN1nRaBQ4+n6ZiXf2fCIjsNbqcNxDR6w0f+yQD1UvFjPdXYsM0spPuMI9+6Lo4DivsjfLb4qOGCaGSTgLRF1Am+l+nFv84jXQ357TpQ8TNyDEWTdu7Iz6DOdRVYcp4jECusLgO4ekSnHO6F9unxZfCLYLASrmnENqpkgWlbFwBejNEU3kA7YIZuVd15SQbU3htE7CdhTtR/AVbYR1F6UwbuGfi0wpgyHnHpGbJTCLExfCPRVuaXOa1ryVR0eoLFvh6QD/V/W670="
 os:
-- linux
-- osx
-- windows
+  - linux
+  - osx
+  - windows
 before_install:
-- npm cache clean --force
-- rm -rf node_modules package-lock.json
+  - npm cache clean --force
+  - rm -rf node_modules package-lock.json
 script:
-- npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64;
-  fi
+  - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 after_success:
-- openssl aes-256-cbc -k "$travis_key_password" -d -md sha256 -a -in tools/travis_key.enc
-  -out travis_key
-- echo "Host github.com" > ~/.ssh/config
-- echo "  IdentityFile  $(pwd)/travis_key" >> ~/.ssh/config
-- chmod 400 travis_key
-- echo "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
-  > ~/.ssh/known_hosts
-- git config user.name "beajer"
-- git config user.email "919060679@qq.com"
-- git add node/
-- git commit -m "[skip travis] ci:build crc64 for $TRACIS_OS_NAME on travis"
-- git push ${GH} test/ci:test/ci
+  - openssl aes-256-cbc -k "$travis_key_password" -d -md sha256 -a -in ./tools/travis_key.enc -out travis_key
+  - echo "Host github.com" > ~/.ssh/config
+  - echo "  IdentityFile  $(pwd)/travis_key" >> ~/.ssh/config
+  - chmod 400 travis_key
+  - git config user.name "Travis CI"
+  - git config user.email "919060679@qq.com"
+  - git add node/
+  - git commit -m "[skip travis] ci:build crc64 for $TRACIS_OS_NAME on travis"
+  - git push ${GH} test/ci:test/ci
