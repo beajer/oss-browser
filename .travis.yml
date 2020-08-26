@@ -4,8 +4,8 @@ branches:
   only:
     - test/ci
 os:
-  - linux
-  - osx
+  # - linux
+  # - osx
   - windows
 before_install:
   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
@@ -14,7 +14,8 @@ before_install:
   - ssh-add deploy_key
   - git config user.name "Travis CI BOT"
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
+  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> C:\ProgramData\ssh\config; fi
   - git remote set-url origin git@github.com:beajer/oss-browser.git
 script:
   - git pull origin test/ci --no-rebase
