@@ -15,7 +15,9 @@ before_install:
 script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
 after_success:
+  - git config user.name "Travis CI"
+  - git config user.email "travis@Traviss-$TRAVIS_OS_NAME-6.local"
   - git add node/
   - git commit -m 'chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME'
-  - git remote add origin https://github.com/beajer/oss-browser.git
-  - git push origin test/ci
+  - git remote -v
+  - git push
