@@ -20,4 +20,4 @@ script:
   - git add node/
   - git commit -m 'chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME'
   - git remote add upstream git@github.com:beajer/oss-browser.git
-  - git push upstream test/ci
+  - git push upstream HEAD:test/ci
