@@ -13,12 +13,12 @@ before_install:
   - eval `ssh-agent -s`
   - ssh-add deploy_key
   - git config user.name "Travis CI BOT"
-  - git config user.email `travis@Travis-$TRAVIS_OS_NAME-6.local`
+  - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
   - git remote set-url origin git@github.com:beajer/oss-browser.git
-  - git pull origin test/cli:HEAD
+  - git pull origin test/cli
 script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
   - git add node/
-  - git commit -m `chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME`
+  - git commit -m "chore:\s[skip travis] build native addon on ["$TRAVIS_OS_NAME"]"
   - git push origin HEAD:test/ci
