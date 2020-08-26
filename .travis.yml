@@ -14,8 +14,8 @@ before_install:
   - ssh-add deploy_key
   - git config user.name "Travis CI BOT"
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
-  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> C:\ProgramData\ssh\config; fi
+  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> C:\Users\travis\.ssh\config; fi
   - git remote set-url origin git@github.com:beajer/oss-browser.git
 script:
   - git pull origin test/ci --no-rebase
