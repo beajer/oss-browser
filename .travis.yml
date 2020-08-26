@@ -17,4 +17,5 @@ script:
 after_success:
   - git add node/
   - git commit -m 'chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME'
-  - git push
+  - git remote add origin https://github.com/beajer/oss-browser.git
+  - git push origin test/ci
