@@ -16,8 +16,8 @@ before_install:
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
   - git remote set-url origin git@github.com:beajer/oss-browser.git
-  - git pull origin test/ci --no-rebase
 script:
+  - git pull origin test/ci --no-rebase
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
   - git add node/
   - git commit -m "chore:\s[skip travis] build native addon on ["$TRAVIS_OS_NAME"]"
