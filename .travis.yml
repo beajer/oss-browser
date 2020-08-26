@@ -20,4 +20,4 @@ after_success:
   - git add node/
   - git commit -m 'chore:\s[skip travis] build native addon on $TRAVIS_OS_NAME'
   - git remote -v
-  - git push
+  - git push origin test/ci
