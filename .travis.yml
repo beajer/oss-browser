@@ -15,10 +15,10 @@ before_install:
   - git config user.name "Travis CI BOT"
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
   - if [ "$TRAVIS_OS_NAME" != "windows" ]; then echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> C:\Users\travis\.ssh\config; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then echo -e "Host github.com\r\n\tStrictHostKeyChecking no\r\n" >> C:\Users\travis\.ssh\config; fi
   - git remote set-url origin git@github.com:beajer/oss-browser.git
-script:
   - git pull origin test/ci --no-rebase
+script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
   - git add node/
   - git commit -m "chore:\s[skip travis] build native addon on ["$TRAVIS_OS_NAME"]"
