@@ -6,7 +6,7 @@ branches:
 env:
   global:
     - GH: https://github.com/beajer/oss-browser.git
-    - secure: "c0Tnsi67xqYVS2ENRwg7BpDrgdLjLBvxrWB5P+EOElWjAtzbAHi9r70Fp0cg0Sjok0iTaVlSKzNw9IdABxvOsp3PXN4MMTqPb+NwgV/2i/O4QIpsRrlMAYlFIjNpY9l0Ju8O8nzR77CUOAZvJJLyWI2zEZWElq/yh6vGHDqlgoJ0nbhBS3aBPe8HlCCcJbFrodulpkqDFlh2hIZ58YzJ9mpy2DJnFlDLUIMCPNHskKt5Lb5u3I0PkcupZaDs6MMXe9esNKR9fTLbmwOfVojloZHmuWwviu29KJ7UdoZdxx5LtK47pDAR4/WngClLtKk4FHcbDMqoGdkf5kw6JqFr1LcQhxaFbq3ScVCXFeeSNR/e3H/acN9mTy+ZhQVpZQrx+kG9wyqLoLbgDHmBNyV3yOOnGy5oM5dsAN1nRaBQ4+n6ZiXf2fCIjsNbqcNxDR6w0f+yQD1UvFjPdXYsM0spPuMI9+6Lo4DivsjfLb4qOGCaGSTgLRF1Am+l+nFv84jXQ357TpQ8TNyDEWTdu7Iz6DOdRVYcp4jECusLgO4ekSnHO6F9unxZfCLYLASrmnENqpkgWlbFwBejNEU3kA7YIZuVd15SQbU3htE7CdhTtR/AVbYR1F6UwbuGfi0wpgyHnHpGbJTCLExfCPRVuaXOa1ryVR0eoLFvh6QD/V/W670="
+    - secure: "FOxijoLPmsJS3rsFAr1ROZ1cxIXOFnUkeKSxc0fI8qI9QVhdhGY0QlzYMCnO9yBt0wGBPMdDhg+KYU8uJCUiKAMrCHmJwFqPpGYFEBFf2L6kkNWpMTVCEkYJP6STKqEsvEk2a8YR4oelc0wCVXkVNr0BTprrocuphFgZOB/f4GBL3ENOD88iYX1C3hd54v1uiSJsFdqQIWcImbzWuAm84e2XDGiMqRbqKv4z62hL7dvfno3Zsv+B0lQN0DuwFe7MD2q30orDsn8Zw1QPIumhPOgAmKCaYAv8X5rLDQo5NrW8WJsKT85h+vnhNCC+45TrMi7WbAe/KJHa+dcIT9Ze6G5A4+2y/+mwNdDTI2rIUqRIFy0Ri0kHcO18HeMIwHUGfpW9cEdbhDmKp20cbpDy4gWca23u6IyBg5Uj/BQQ4km/vHfWJ9+2wIKIDggVXcjGs0QtMWcbi3HQXnkBnPnIIKqCOmR773ANRreO5tp0hYJbWO+zq6t9hcyZvgsIlZt3xjdrqge2iXuv5yei+1CK86nj3Xd71yixSpi+YzEno9zNf0m7RzDk7ELuP9Dv/5xbvl7Xv11FqSPWg20F8NRuIcOIZeZfQa4rl/u1IQRo7Wg10BoVzuF+TV0YDYJUlbMwFnaipApfqDX+Te/s1CdYk9ov4mqLB9dlTCzwbIsFW+g="
 os:
   - linux
   - osx
@@ -16,13 +16,11 @@ before_install:
   - rm -rf node_modules package-lock.json
 script:
   - npm run build-crc64 && if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run test-crc64; fi
-after_success:
-  - openssl aes-256-cbc -k "$travis_key_password" -nopad -d -md sha256 -a -in ./tools/travis_key.enc -out travis_key
-  - echo "Host github.com" > ~/.ssh/config
-  - echo "  IdentityFile  $(pwd)/travis_key" >> ~/.ssh/config
-  - chmod 400 travis_key
-  - git config user.name "Travis CI"
-  - git config user.email "919060679@qq.com"
-  - git add node/
-  - git commit -m "[skip travis] ci:build crc64 for $TRACIS_OS_NAME on travis"
-  - git push ${GH} test/ci:test/ci
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  target_branch: develop
+  on:
+    branch: test/ci
