@@ -29,11 +29,11 @@ script:
   - git add node/
   - |-
     if [ "$TRAVIS_OS_NAME" = "windows" ];
-    then export isChanged = $(git status -z | grep -e ".travis");
-    else isChanged = $(git status -z | grep -e ".travis");
+    then set hasChanged=$(git status -z | grep -e ".travis");
+    else hasChanged=$(git status -z | grep -e ".travis");
     fi;
   - |-
-    if [ $isChanged != "" ]; 
+    if [ $hasChanged != "" ]; 
     then 
     git commit -m "chore:\s[skip travis] build native addon on "$TRAVIS_OS_NAME""; 
     git push origin HEAD:test/ci; 
