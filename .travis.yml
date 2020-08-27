@@ -32,7 +32,8 @@ install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 script:
-  - xvfb-run npm run test-crc64
+  # - npm run test-crc64
+  - npx electron --version
 # script:
 #   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
 #   - git add node/
