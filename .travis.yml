@@ -18,7 +18,7 @@ before_install:
   - git config user.name "Travis CI BOT"
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
   - |-
-    if [ ! test -d "$HOME/.ssh/" ]; 
+    if [ ! -d "$HOME/.ssh/" ]; 
     then mkdir $HOME/.ssh/; 
     fi;
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
@@ -27,7 +27,7 @@ before_install:
 script:
   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
   - git add node/
-  - set hasChanged=$(git status -z | grep -e ".travis");
+  - set hasChanged=$(git status -z | grep -e "node/");
   - |-
     if [[ $hasChanged != "" ]]; 
     then 
