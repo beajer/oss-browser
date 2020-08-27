@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
       - xvfb
+      - libgconf-2-4
 git:
   autocrlf: input
   symlinks: true
