@@ -7,12 +7,9 @@ branches:
   only:
     - test/ci
 os:
-  - linux
-  - osx
+  # - linux
+  # - osx
   - windows
-ia:
-  - x64
-  - ia32
 before_install:
   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
   - chmod 600 deploy_key
@@ -28,7 +25,9 @@ before_install:
   - git remote set-url origin git@github.com:beajer/oss-browser.git
   - git pull origin test/ci --no-rebase
 script:
-  - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
+  # - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
+  - npm run build-crc64
+  - npm run test-crc64
   - git add node/
   - set hasChanged=$(git status -z | grep -e "node/");
   - |-
