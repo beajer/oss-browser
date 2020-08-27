@@ -14,8 +14,6 @@ os:
   # - linux
   # - osx
   - windows
-script:
-  - npm run test-crc64
 # before_install:
 #   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
 #   - chmod 600 deploy_key
@@ -33,6 +31,8 @@ script:
 install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+script:
+  - xvfb-maybe npm run test-crc64
 # script:
 #   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
 #   - git add node/
