@@ -19,7 +19,7 @@ before_install:
   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
   - |-
     if [ ! test -d $HOME/.ssh ]; 
-    mkdir $HOME/.ssh; 
+    then mkdir $HOME/.ssh; 
     fi;
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
   - git remote set-url origin git@github.com:beajer/oss-browser.git
