@@ -10,29 +10,29 @@ os:
   # - linux
   # - osx
   - windows
-before_install:
-  - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
-  - chmod 600 deploy_key
-  - eval `ssh-agent -s`
-  - ssh-add deploy_key
-  - git config user.name "Travis CI BOT"
-  - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
-  - |-
-    if [ ! -d "$HOME/.ssh/" ]; 
-    then mkdir $HOME/.ssh/; 
-    fi;
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
-  - git remote set-url origin git@github.com:beajer/oss-browser.git
-  - git pull origin test/ci --no-rebase
 script:
-  # - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
-  - npm run build-crc64
   - npm run test-crc64
-  - git add node/
-  - set hasChanged=$(git status -z | grep -e "node/");
-  - |-
-    if [[ $hasChanged != "" ]]; 
-    then 
-    git commit -m "chore: [skip travis] build native addon on "$TRAVIS_OS_NAME""; 
-    git push origin HEAD:test/ci; 
-    fi;
+# before_install:
+#   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
+#   - chmod 600 deploy_key
+#   - eval `ssh-agent -s`
+#   - ssh-add deploy_key
+#   - git config user.name "Travis CI BOT"
+#   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
+#   - |-
+#     if [ ! -d "$HOME/.ssh/" ]; 
+#     then mkdir $HOME/.ssh/; 
+#     fi;
+#   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
+#   - git remote set-url origin git@github.com:beajer/oss-browser.git
+#   - git pull origin test/ci --no-rebase
+# script:
+#   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
+#   - git add node/
+#   - set hasChanged=$(git status -z | grep -e "node/");
+#   - |-
+#     if [[ $hasChanged != "" ]]; 
+#     then 
+#     git commit -m "chore: [skip travis] build native addon on "$TRAVIS_OS_NAME""; 
+#     git push origin HEAD:test/ci; 
+#     fi;
