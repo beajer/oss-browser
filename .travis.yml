@@ -10,6 +10,9 @@ os:
   - linux
   - osx
   - windows
+ia:
+  - x64
+  - ia32
 before_install:
   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
   - chmod 600 deploy_key
