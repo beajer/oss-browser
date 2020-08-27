@@ -1,10 +1,5 @@
 language: node_js
 node_js: "12"
-addons:
-  apt:
-    packages:
-      - xvfb
-      - libgconf-2-4
 git:
   autocrlf: input
   symlinks: true
@@ -29,13 +24,20 @@ os:
 #   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
 #   - git remote set-url origin git@github.com:beajer/oss-browser.git
 #   - git pull origin test/ci --no-rebase
-install:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+# addons:
+#   apt:
+#     packages:
+#       - xvfb
+# install:
+#   - export DISPLAY=':99.0'
+#   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
 script:
   # - npm run test-crc64
   - export NODE_DEBUG="*"
-  - npx electron --version --disable-gpu
+  - export NODE_DEBUG_NATIVE="*"
+  - npx electron --version
 # script:
 #   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
 #   - git add node/
