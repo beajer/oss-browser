@@ -25,13 +25,13 @@ os:
 #   - git remote set-url origin git@github.com:beajer/oss-browser.git
 #   - git pull origin test/ci --no-rebase
 
-# addons:
-#   apt:
-#     packages:
-#       - xvfb
-# install:
-#   - export DISPLAY=':99.0'
-#   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 script:
   # - npm run test-crc64
