@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
+const electron = require("electron");
 const CRC64 = require("../");
 
 async function main() {
@@ -90,6 +91,11 @@ main()
     process.exit(0);
   })
   .catch((e) => {
+    electron.dialog.showMessageBoxSync({
+      type: "error",
+      message: "Test crcr64-cpp-addon failed!",
+      detail: e.message,
+    });
     console.error("Test crcr64-cpp-addon failed!");
     process.exit(1);
   });
