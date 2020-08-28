@@ -7,45 +7,31 @@ branches:
   only:
     - test/ci
 os:
-  # - linux
-  # - osx
+  - linux
+  - osx
   - windows
-# before_install:
-#   - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
-#   - chmod 600 deploy_key
-#   - eval `ssh-agent -s`
-#   - ssh-add deploy_key
-#   - git config user.name "Travis CI BOT"
-#   - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
-#   - |-
-#     if [ ! -d "$HOME/.ssh/" ];
-#     then mkdir $HOME/.ssh/;
-#     fi;
-#   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
-#   - git remote set-url origin git@github.com:beajer/oss-browser.git
-#   - git pull origin test/ci --no-rebase
-
-addons:
-  apt:
-    packages:
-      - xvfb
-  chrome: stable
-install:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+before_install:
+  - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
+  - chmod 600 deploy_key
+  - eval `ssh-agent -s`
+  - ssh-add deploy_key
+  - git config user.name "Travis CI BOT"
+  - git config user.email "travis@Travis-["$TRAVIS_OS_NAME"]-6.local"
+  - |-
+    if [ ! -d "$HOME/.ssh/" ];
+    then mkdir $HOME/.ssh/;
+    fi;
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
+  - git remote set-url origin git@github.com:beajer/oss-browser.git
 
 script:
-  # - npm run test-crc64
-  - export NODE_DEBUG="*"
-  - export NODE_DEBUG_NATIVE="*"
-  - npx electron --version --no-sandbox
-# script:
-#   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
-#   - git add node/
-#   - set hasChanged=$(git status -z | grep -e "node/");
-#   - |-
-#     if [[ $hasChanged != "" ]];
-#     then
-#     git commit -m "chore: [skip travis] build native addon on "$TRAVIS_OS_NAME"";
-#     git push origin HEAD:test/ci;
-#     fi;
+  - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
+  - git pull origin test/ci --no-rebase;
+  - git add node/
+  - set hasChanged=$(git status -z | grep -e "node/");
+  - |-
+    if [[ $hasChanged != "" ]];
+    then
+    git commit -m "chore: [skip travis] build native addon on "$TRAVIS_OS_NAME"";
+    git push origin HEAD:test/ci;
+    fi;
