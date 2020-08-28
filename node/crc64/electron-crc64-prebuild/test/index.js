@@ -39,22 +39,20 @@ async function main() {
     assert.strictEqual(r7, result1);
   }
 
-  await (async function () {
-    await new Promise((resolve) => {
-      const readStream = fs.createReadStream(path.join(__dirname, "apps.png"));
-      CRC64.crc64Stream(readStream, (err, result) => {
-        assert.ifError(err);
-        assert.strictEqual(result, result2);
-        resolve();
-      });
+  await new Promise((resolve) => {
+    const readStream = fs.createReadStream(path.join(__dirname, "apps.png"));
+    CRC64.crc64Stream(readStream, (err, result) => {
+      assert.ifError(err);
+      assert.strictEqual(result, result2);
+      resolve();
     });
-  })();
+  });
 
   // check_stream 串行
   await (async function series() {
     for (let i = 0; i < 100; i++) {
       const readStream = fs.createReadStream(path.join(__dirname, "apps.png"));
-      await new Promise((resolve, reject) => {
+      await new Promise((resolve) => {
         CRC64.crc64Stream(readStream, (err, result) => {
           assert.ifError(err);
           assert.strictEqual(result, result2);
@@ -66,23 +64,21 @@ async function main() {
   })();
 
   // check_stream 并行
-  await (function parallel() {
-    Promise.all(
-      Array.from({ length: 100 }).map(() => {
-        return new Promise((resolve) => {
-          const readStream = fs.createReadStream(
-            path.join(__dirname, "apps.png")
-          );
-          CRC64.crc64Stream(readStream, (err, result) => {
-            assert.ifError(err);
-            assert.strictEqual(result, result2);
-            readStream.close();
-            resolve();
-          });
+  await Promise.all(
+    Array.from({ length: 100 }).map(() => {
+      return new Promise((resolve) => {
+        const readStream = fs.createReadStream(
+          path.join(__dirname, "apps.png")
+        );
+        CRC64.crc64Stream(readStream, (err, result) => {
+          assert.ifError(err);
+          assert.strictEqual(result, result2);
+          readStream.close();
+          resolve();
         });
-      })
-    );
-  })();
+      });
+    })
+  );
 }
 
 console.log(`Start testing electron-crc64-prebuild`);
