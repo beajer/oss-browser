@@ -3,6 +3,15 @@ node_js: "12"
 git:
   autocrlf: input
   symlinks: true
+
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
 branches:
   only:
     - test/ci
@@ -23,9 +32,11 @@ before_install:
     fi;
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
   - git remote set-url origin git@github.com:beajer/oss-browser.git
+
 script:
   - npm run build-crc64
-  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64 --no-sandbox; fi
+  # - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64 --no-sandbox; fi
+  - npm run test-crc64
   - git pull origin test/ci --no-rebase
   - git add node/
   - set hasChanged=$(git status -z | grep -e "node/");
