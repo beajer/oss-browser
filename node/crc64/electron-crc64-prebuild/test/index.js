@@ -88,6 +88,7 @@ console.log(`Start testing electron-crc64-prebuild`);
 main()
   .then(() => {
     console.log("Test electron-crc64-prebuild is successful");
+    electron.app.exit(0);
     process.exit(0);
   })
   .catch((e) => {
@@ -97,5 +98,6 @@ main()
       detail: e.message,
     });
     console.error("Test crcr64-cpp-addon failed!");
+    electron.app.exit(0);
     process.exit(1);
   });
