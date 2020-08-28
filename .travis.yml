@@ -37,7 +37,7 @@ script:
   # - npm run test-crc64
   - export NODE_DEBUG="*"
   - export NODE_DEBUG_NATIVE="*"
-  - npx electron --version
+  - npx electron --version --no-sandbox
 # script:
 #   - npm run build-crc64 && if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
 #   - git add node/
