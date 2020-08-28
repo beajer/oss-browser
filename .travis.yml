@@ -4,6 +4,7 @@ git:
   autocrlf: input
   symlinks: true
 
+# linux 需要xvfb虚拟屏幕实例
 addons:
   apt:
     packages:
@@ -35,8 +36,8 @@ before_install:
 
 script:
   - npm run build-crc64
-  # - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64 --no-sandbox; fi
-  - npm run test-crc64
+  # current Windows Server, version 1809 does not contain GUI and multimedia components. 
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
   - git pull origin test/ci --no-rebase
   - git add node/
   - set hasChanged=$(git status -z | grep -e "node/");
