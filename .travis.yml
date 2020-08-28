@@ -3,6 +3,15 @@ node_js: "12"
 git:
   autocrlf: input
   symlinks: true
+
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  
 branches:
   only:
     - test/ci
@@ -34,4 +43,7 @@ script:
     then
     git commit -m "chore: [skip travis] build native addon on "$TRAVIS_OS_NAME"";
     git push origin HEAD:test/ci;
+    else
+    echo "Crc64 does not require compilation"
     fi;
+    
