@@ -77,6 +77,7 @@ async function main() {
             assert.ifError(err);
             assert.strictEqual(result, result2);
             readStream.close();
+            resolve();
           });
         });
       })
@@ -85,19 +86,17 @@ async function main() {
 }
 
 console.log(`Start testing electron-crc64-prebuild`);
-// main()
-//   .then(() => {
-//     console.log("Test electron-crc64-prebuild is successful");
-//     process.exit();
-//   })
-//   .catch((e) => {
-//     electron.dialog.showMessageBoxSync({
-//       type: "error",
-//       message: "Test crcr64-cpp-addon failed!",
-//       detail: e.message,
-//     });
-//     console.error("Test crcr64-cpp-addon failed!");
-//     process.exit(1);
-//   });
-
-process.exit();
+main()
+  .then(() => {
+    console.log("Test electron-crc64-prebuild is successful");
+    process.exit();
+  })
+  .catch((e) => {
+    electron.dialog.showMessageBoxSync({
+      type: "error",
+      message: "Test crcr64-cpp-addon failed!",
+      detail: e.message,
+    });
+    console.error("Test crcr64-cpp-addon failed!");
+    process.exit(1);
+  });
