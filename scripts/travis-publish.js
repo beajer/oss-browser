@@ -17,3 +17,5 @@ shell.cp(
   `build/${name}-${process.platform}-x64/resources/app.asar`,
   `releases/${version}/${process.platform}-x64`
 );
+shell.ls("build/");
+shell.ls("releases/");
