@@ -14,6 +14,6 @@ const makePlatform = {
 shell.exec(`make ${makePlatform[process.platform]}`);
 shell.mkdir("-p", `releases/${version}/${process.platform}-x64`);
 shell.cp(
-  `build/${name}-${process.platform}-x64/resources / app.asar`,
+  `build/${name}-${process.platform}-x64/resources/app.asar`,
   `releases/${version}/${process.platform}-x64`
 );
