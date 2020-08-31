@@ -8,7 +8,7 @@ shell.cd("../");
 
 const makePlatform = {
   windows: "win64",
-  osx: "mac",
+  darwin: "mac",
   linux: "linux64",
 };
 shell.exec(`make ${makePlatform[process.platform]}`);
