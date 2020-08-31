@@ -1,7 +1,6 @@
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
-const electron = require("electron");
 const CRC64 = require("../");
 
 async function main() {
@@ -81,6 +80,7 @@ async function main() {
   );
 }
 
+console.log(process.argv);
 console.log(`Start testing electron-crc64-prebuild`);
 main()
   .then(() => {
@@ -88,11 +88,6 @@ main()
     process.exit();
   })
   .catch((e) => {
-    electron.dialog.showMessageBoxSync({
-      type: "error",
-      message: "Test crcr64-cpp-addon failed!",
-      detail: e.message,
-    });
-    console.error("Test crcr64-cpp-addon failed!");
+    console.error("Test crcr64-cpp-addon failed: ", e.message);
     process.exit(1);
   });
