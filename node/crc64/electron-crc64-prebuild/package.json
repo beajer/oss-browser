@@ -6,8 +6,7 @@
   "scripts": {
     "test": "electron test/",
     "build": "node scripts/build.js",
-    "rebuild": "node scripts/rebuild.js",
-    "postinstall": "npm run build && npm run test"
+    "rebuild": "node scripts/rebuild.js"
   },
   "devDependencies": {},
   "author": "",
