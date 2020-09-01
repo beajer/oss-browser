@@ -32,7 +32,7 @@ shell.cp("-rf", "custom/", `${BUILD_PATH}/resources`);
 shell.rm("-f", ZIP_PATH);
 
 console.log("Start compressing files");
-shell.exec(`node scripts/zip.js ${ZIP_PATH} ${BUILD_PATH}`);
+shell.exec(`node scripts/zip.js ${ZIP_PATH} ${BUILD_PATH}/`);
 console.log("Done compressing files");
 
 const store = new OSS({

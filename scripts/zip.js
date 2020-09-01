@@ -7,18 +7,22 @@ if (process.argv.length > 3) {
   var dest = process.argv[2].trim();
   var src = process.argv[3].trim();
   zip(src, dest);
-  if (process.platform === "linux")
+  // osx下zip命令压缩效率不行
+  if (process.platform === "linux") {
     sh.exec(`zip ${dest} -r ${src}`, function (code, stdout, stderr) {
-      if (stderr) console.log(stderr);
+      if (stderr) {
+        console.log(stderr);
+        process.exit(1);
+      }
     });
-  else {
-    // osx下自带zip命令压缩效率不行
-    if (process.platform === "darwin" && src.indexOf("darwin") != -1) {
-      console.log(
-        "can not zip *.app for mac os in windows, you should zip it manually! Location is " +
-          dest
-      );
-    } else zip(src, dest);
+  } else if (process.platform === "win32" && src.indexOf("darwin") != -1) {
+    console.log(
+      "can not zip *.app for mac os in windows, you should zip it manually! Location is " +
+        dest
+    );
+    process.exit(1);
+  } else {
+    zip(src, dest);
   }
 }
 
