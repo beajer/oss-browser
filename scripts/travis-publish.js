@@ -36,6 +36,7 @@ const store = new OSS({
   accessKeyId: env.AK_ID,
   accessKeySecret: env.AK_SECRET,
   bucket: "beajer-test",
+  endpoint: "oss-accelerate.aliyuncs.com",
 });
 
 const zip_name = `${version}/${name}-${process.platform}-${process.arch}.zip`;
