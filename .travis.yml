@@ -3,16 +3,14 @@ node_js: "12"
 git:
   autocrlf: input
   symlinks: true
-
-# linux 需要xvfb虚拟屏幕实例
 addons:
   apt:
     packages:
+      ## linux 需要xvfb虚拟屏幕实例
       - xvfb
 install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-
 branches:
   only:
     - test/ci
@@ -21,7 +19,8 @@ os:
   - osx
   - windows
 before_install:
-  - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv -in github_deploy_key.enc -out deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_8ebb1ef83f64_key -iv $encrypted_8ebb1ef83f64_iv
+    -in github_deploy_key.enc -out deploy_key -d
   - chmod 600 deploy_key
   - eval `ssh-agent -s`
   - ssh-add deploy_key
@@ -33,10 +32,8 @@ before_install:
     fi;
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
   - git remote set-url origin git@github.com:beajer/oss-browser.git
-
 script:
   - npm run build-crc64
-  # current Windows Server, version 1809 does not contain GUI and multimedia components.
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then npm run test-crc64; fi
   - git pull origin test/ci --no-rebase
   - git add node/
@@ -49,4 +46,8 @@ script:
     else
     echo "Crc64 does not require compilation"
     fi;
-  - npm run travis-public
+  - npm run travis-public AK_ID=$AK_ID AK_SECRET=$AK_SECRET
+env:
+  global:
+    - secure: SNdRHHYJgo5Dpfz8fkMTh0J4rOIcAhvF1Xgcz/7kj/7acaA+hRYx+ql78uUqRjy+bPis7M568Wk807URZWBKsSTdvtdAVsKFBuHkWEP/ghHe8BzuXQVAaffdJwOrGVgrjdWZj35i9HuodfnxcK1t/ULmdtv/NcvM7sk08JOajl2/tN9ZwVkjlv+lEPSqZhU3WSBJAJ307OMthY2L9A5ZzYBfMdrzdAbW37dLrzuNrhwQaWknQtMH2L7SujYPMwRSZM6WV6Rpg9a3EczuqS5Oxqn37H3CCqGbaUGeHcvuFPzG/Rb/vt1ol3JZP0dTzCZOYwAomvWvV6WdUu71pFeKngDaIV1JtpL268IKwINm+Adg6+7yW4drKqG2JR157KglHyzZ+XjlWt/i7LAT1k2RfkWamM93/5kKcnx9oJasXyxn4+/vrO4kGNqQsK9MmJd5wtA7M+DDeOuAGxfhrGtgJfbcVKSE0yF9aAxzQtOmtSCfXCi1Fwhm5F1Qz2ks/2AdP30StJNvwtdPiDGpTvMnzm4AqPseZf0ffdMnxKGpZq8UFHgOJ9Ij5uzxwYIToS7Qj07DztPQwxt3uHi8XtsANOOTIikZwi7/+a71P2bgQDxrs1CqAXnTHrRKGnKla+UJxiISvmhnZ24X/xtz9QEXB9IBuXHIA7Poj2iamcs6ujU=
+    - secure: EB9n7Ml/q8HRwmunqGjxma8vmaiPPzhTgcK3/zy1B7CLealUJBsnSuOYJqa+XynIWY8ytYmR2SD9Ak07TjEkvspPmuDlGvixcVzs1rQi/PLNCesqMKB6cXb2E417eEQPBteSKc9Ifj43PVqKaoeVMZJ5ek2oD0vT4NfAti/q+ZbBu9ck+0XvA7M3yK6rhPqnm8mHIW4w4IVEnyLzrJTJCIqp4q8RvqWNqxTxSqmKYTgR4S9UbRearEculjHdOpU9Gh/d8dfj6KM7cXghWnJXeLP/YRYZciDdopjwpNDt126Pm9IwwyX5O+QMoFL/hWWyZh6oy61ozfMrskbELaRy0Fx6++0HaSNHL9084t/ur4Sss0jY7//nyi++2KSpJKypptz9Y82oC6QFKgBnBo2fI10waCzYZAKlA3jtiMOSztf+ZrD07H4oa350Dgto3UHBltOQcJXTrVpo7h+OMQZsEGSUKz6CdNr7kFOtunpyMyhHqQRPkLXk9GQG/4B7WqFoXnirwevCsv9bHsTgrMEaAAStgBtFEcoQ62uPQU0yD7HEM5UpVWrpKQSAPbxQlYO3nhX7a8WDZSpTexcU/AqmOVmLqK09fdkldv2msL5nji8/QHd/JP20lrZz9C8nr1omPU8jOufLRsDBTKU4dz52XuaPLIpGtPm9nvN7gMzHksk=

@@ -17,7 +17,7 @@
     "rcedit": "cp tools/rcedit-x64.exe node_modules/rcedit/bin/rcedit.exe",
     "build-crc64": "node node/crc64/electron-crc64-prebuild/scripts/build.js",
     "test-crc64": "electron node/crc64/electron-crc64-prebuild/test/",
-    "travis-public": "node scripts/travis-publish.js"
+    "travis-publish": "node scripts/travis-publish.js"
   },
   "engines": {
     "node": "8.2.1"
