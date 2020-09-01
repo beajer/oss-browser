@@ -57,7 +57,7 @@ function zip(src, dest) {
     archive.pipe(output);
 
     // append files from a glob pattern
-    archive.directory(src);
+    archive.directory(src, false);
 
     // finalize the archive (ie we are done appending files but streams have to finish yet)
     // 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand
