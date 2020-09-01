@@ -3,7 +3,6 @@ const path = require("path");
 const OSS = require("ali-oss");
 const { version, name } = require("../package.json");
 const ELECTRON_VERSION = require("electron/package.json").version;
-const ELECTRON_MIRROR = "http://npm.taobao.org/mirrors/electron/";
 
 const env = {};
 for (let i = 2; i < process.argv.length; i++) {
@@ -27,9 +26,9 @@ shell.cd("dist");
 shell.exec("npm i");
 shell.cd("../");
 shell.exec(
-  `ELECTRON_MIRROR=${ELECTRON_MIRROR} npx electron-packager ./dist ${name} --asar.unpack="*.node" --overwrite --out=${OUT} --electron-version ${ELECTRON_VERSION} --app-version ${version} --platform=${process.platform} --arch=${process.arch}`
+  `npx electron-packager ./dist ${name} --asar.unpack="*.node" --overwrite --out=${OUT} --electron-version ${ELECTRON_VERSION} --app-version ${version} --platform=${process.platform} --arch=${process.arch}`
 );
-shell.cp("-rf", "custrom/", `${BUILD_PATH}/resources`);
+shell.cp("-rf", "custom/", `${BUILD_PATH}/resources`);
 shell.rm("-f", ZIP_PATH);
 shell.exec(`node scripts/zip.js ${ZIP_PATH} ${BUILD_PATH}`);
 
@@ -41,13 +40,24 @@ const store = new OSS({
 
 const zip_name = `${version}/${name}-${process.platform}-${process.arch}.zip`;
 const asar_name = `${version}/${name}-${process.platform}-${process.arch}.asar`;
+
+console.log(`Start upload ${zip_name}, ${asar_name}`);
 Promise.all([
-  store.multipartUpload(zip_name, ZIP_PATH),
+  store.multipartUpload(zip_name, ZIP_PATH, {
+    progress: function (p) {
+      console.log(`Uploading ${zip_name} ${p}`);
+    },
+  }),
   store.multipartUpload(
     asar_name,
     process.platform === "darwin"
       ? `${BUILD_PATH}/${name}.app/Contents/Resources/app.asar`
-      : `${BUILD_PATH}/resources/app.asar`
+      : `${BUILD_PATH}/resources/app.asar`,
+    {
+      progress: function (p) {
+        console.log(`Uploading ${asar_name} ${p}`);
+      },
+    }
   ),
 ])
   .then(() => {
