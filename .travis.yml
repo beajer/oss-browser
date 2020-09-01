@@ -46,7 +46,7 @@ script:
     else
     echo "Crc64 does not require compilation"
     fi;
-  - npm run travis-public AK_ID=$AK_ID AK_SECRET=$AK_SECRET
+  - npm run travis-publish AK_ID=$AK_ID AK_SECRET=$AK_SECRET
 env:
   global:
     - secure: SNdRHHYJgo5Dpfz8fkMTh0J4rOIcAhvF1Xgcz/7kj/7acaA+hRYx+ql78uUqRjy+bPis7M568Wk807URZWBKsSTdvtdAVsKFBuHkWEP/ghHe8BzuXQVAaffdJwOrGVgrjdWZj35i9HuodfnxcK1t/ULmdtv/NcvM7sk08JOajl2/tN9ZwVkjlv+lEPSqZhU3WSBJAJ307OMthY2L9A5ZzYBfMdrzdAbW37dLrzuNrhwQaWknQtMH2L7SujYPMwRSZM6WV6Rpg9a3EczuqS5Oxqn37H3CCqGbaUGeHcvuFPzG/Rb/vt1ol3JZP0dTzCZOYwAomvWvV6WdUu71pFeKngDaIV1JtpL268IKwINm+Adg6+7yW4drKqG2JR157KglHyzZ+XjlWt/i7LAT1k2RfkWamM93/5kKcnx9oJasXyxn4+/vrO4kGNqQsK9MmJd5wtA7M+DDeOuAGxfhrGtgJfbcVKSE0yF9aAxzQtOmtSCfXCi1Fwhm5F1Qz2ks/2AdP30StJNvwtdPiDGpTvMnzm4AqPseZf0ffdMnxKGpZq8UFHgOJ9Ij5uzxwYIToS7Qj07DztPQwxt3uHi8XtsANOOTIikZwi7/+a71P2bgQDxrs1CqAXnTHrRKGnKla+UJxiISvmhnZ24X/xtz9QEXB9IBuXHIA7Poj2iamcs6ujU=
