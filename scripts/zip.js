@@ -6,12 +6,14 @@ var sh = require("shelljs");
 if (process.argv.length > 3) {
   var dest = process.argv[2].trim();
   var src = process.argv[3].trim();
-  if (process.platform != "win32")
+  zip(src, dest);
+  if (process.platform === "linux")
     sh.exec(`zip ${dest} -r ${src}`, function (code, stdout, stderr) {
       if (stderr) console.log(stderr);
     });
   else {
-    if (src.indexOf("darwin") != -1) {
+    // osx下自带zip命令压缩效率不行
+    if (process.platform === "darwin" && src.indexOf("darwin") != -1) {
       console.log(
         "can not zip *.app for mac os in windows, you should zip it manually! Location is " +
           dest
